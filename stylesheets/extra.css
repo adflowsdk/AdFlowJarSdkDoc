@@ -1,0 +1,4 @@
+/* 隐藏右上角的仓库按钮 */
+.md-header__source {
+    display: none !important;
+}
