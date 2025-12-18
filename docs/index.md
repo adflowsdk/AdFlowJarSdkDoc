@@ -63,6 +63,7 @@ AdFlowInitialize.initialize(this, app_id,
         }
     });
 ```
+	app_id和channel_id需要联系对接人员给出。
 
 3. MainApplication文件头部需要引入接口文件：
 ```java
@@ -85,13 +86,13 @@ import com.adflow.adflowads.unit.AdFlowInterstitial;
 ```
 2.新建一个类成员变量：
 ```java
-AdFlowInterstitial mInterstitialAd;
+AdFlowInterstitial mAdFlowInterstitialAd;
 ```
 3.初始化成员变量，在load广告之前调用接口initInterstitial完成初始化
 ```java
 private void initInterstitial(){
-    mInterstitialAd = new AdFlowInterstitial(this);
-    mInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
+    mAdFlowInterstitialAd = new AdFlowInterstitial(this);
+    mAdFlowInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
         @Override
         public void onInterstitialAdLoaded() {
         }
@@ -123,16 +124,16 @@ private void initInterstitial(){
 1.添加以下代码进行广告预加载
 ```java
 private void loadAd() {
-    if (mInterstitialAd == null) {
+    if (mAdFlowInterstitialAd == null) {
         return;
     }
     //如果要添加子渠道信息需要添加以下4行代码,否则可不加
     Map<String, Object> localMap = new HashMap<>();
     localMap.put("channel", "1008");;
     localMap.put("sub_channel", "3006");
-    mInterstitialAd.setLocalExtra(localMap);
+    mAdFlowInterstitialAd.setLocalExtra(localMap);
     //这行代码必须保留
-    mInterstitialAd.loadAd();
+    mAdFlowInterstitialAd.loadAd();
 }
 ```
 2.如果预加载广告成功，则会进入上一步的回调接口onInterstitialAdLoaded内
@@ -142,8 +143,8 @@ private void loadAd() {
 1.调用接口show展示广告
 ```java
 private void showAd() {
-if (mInterstitialAd != null && mInterstitialAd.isAdReady()) {
-        mInterstitialAd.showAd(this);//this必须为activity
+if (mAdFlowInterstitialAd != null && mAdFlowInterstitialAd.isAdReady()) {
+        mAdFlowInterstitialAd.showAd(this);//this必须为activity
     }
 }
 ```
@@ -152,10 +153,10 @@ if (mInterstitialAd != null && mInterstitialAd.isAdReady()) {
 1.在退出场景或者关闭activity的时候，需在onDestroy内调用下面的接口释放资源
 ```java
 private void destroyInterstitial() {
-    if (mInterstitialAd != null) {
-        mInterstitialAd.destory();
+    if (mAdFlowInterstitialAd != null) {
+        mAdFlowInterstitialAd.destory();
     }
-    mInterstitialAd = null;
+    mAdFlowInterstitialAd = null;
 }
 ```
 
