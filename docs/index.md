@@ -6,27 +6,28 @@
 ## 一、项目配置
 ### 1、添加jar到项目
 
-    1.将jar包复制到app下的libs目录下。注意如果有旧版本的话请先删除。
+1.将jar包复制到app下的libs目录下。注意如果有旧版本的话请先删除。
 
 ### 2、添加依赖
 
-    1.在app包下的build.gradle的dependencies里添加以下代码：
-    <code>
-    dependencies {
-        implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
-    }
-    </code>
+1.在app包下的build.gradle的dependencies里添加以下代码：
+'''java
+    <pre>
+        dependencies {
+            implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+        }
+    </pre>
 
 ### 3、权限说明
 
-    1.在app包的AndroidManifest.xml添加以下基本网络权限
+1.在app包的AndroidManifest.xml添加以下基本网络权限
     <pre>
         <!--添加网络权限-->
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     </pre>
 
-    2.设置允许使用http
+2.设置允许使用http
     在AndroidManifest.xml的application节点内添加以下代码:
     <pre>
         android:usesCleartextTraffic="true"
@@ -34,7 +35,7 @@
 
 ### 4、混淆
 
-    1.添加以下规则到项目的混淆文件proguard-rules.pro内：
+1.添加以下规则到项目的混淆文件proguard-rules.pro内：
     <pre>
         -keep class com.adflow.adflowads.AdFlowInitialize { *;}
 
@@ -44,11 +45,11 @@
 ## 二、代码配置
 
 ### 1、sdk初始化
-        1.如果app内没有application类的话，则需要新建一个类继承自Application. 假设类名为 MainApplication, 即：
+1.如果app内没有application类的话，则需要新建一个类继承自Application. 假设类名为 MainApplication, 即：
 
         <pre>public class MainApplication extends Application {}</pre>
 
-        2.在MainApplication的onCreate接口内添加以下初始化代码
+2.在MainApplication的onCreate接口内添加以下初始化代码
 
         <pre>
             AdFlowInitialize.initialize(this, app_id,
@@ -63,14 +64,14 @@
                 });
         </pre>
 
-        3. MainApplication文件头部需要引入接口文件：
+3. MainApplication文件头部需要引入接口文件：
 
             <code>
                 import com.adflow.adflowads.AdFlowInitialize;
                 import com.adflow.adflowads.listener.AdFlowInitializeListener;
             </code>
 
-        4. 如果处于测试阶段，需要比较详细的日志信息，可以打开日志开关，发布时请删除
+4. 如果处于测试阶段，需要比较详细的日志信息，可以打开日志开关，发布时请删除
 
             <pre>
                 AdFlowInitialize.openDebugLog(true);
@@ -79,14 +80,14 @@
             '''Note: 发布前请删除该接口'''
         
 ### 2. 初始化广告
-        1.在接入的类的头部添加以下引用：
+1.在接入的类的头部添加以下引用：
             <pre>
                 import com.adflow.adflowads.AdFlowAdError;
                 import com.adflow.adflowads.listener.AdFlowInterstitialAdListener;
                 import com.adflow.adflowads.unit.AdFlowInterstitial;
             </pre>
-        2.新建一个类成员变量：AdFlowInterstitial mInterstitialAd;
-        3.初始化成员变量，在load广告之前调用接口initInterstitial完成初始化
+2.新建一个类成员变量：AdFlowInterstitial mInterstitialAd;
+3.初始化成员变量，在load广告之前调用接口initInterstitial完成初始化
             <pre>
                 private void initInterstitial(){
                     mInterstitialAd = new AdFlowInterstitial(this);
@@ -117,9 +118,9 @@
                     });
                 }
             </pre>
-            此回调接口可判断广告的多个状态，加载成功/失败，展示成功/失败，关闭广告
+此回调接口可判断广告的多个状态，加载成功/失败，展示成功/失败，关闭广告
 ### 3. 预加载广告
-        1.添加以下代码进行广告预加载
+1.添加以下代码进行广告预加载
             <pre>
                 private void loadAd() {
                     if (mInterstitialAd == null) {
@@ -134,11 +135,11 @@
                     mInterstitialAd.loadAd();
                 }
             </pre>
-        2.如果预加载广告成功，则会进入上一步的回调接口onInterstitialAdLoaded内
+2.如果预加载广告成功，则会进入上一步的回调接口onInterstitialAdLoaded内
     
  
 ### 4. 显示广告
-        1.调用接口show展示广告
+1.调用接口show展示广告
         <pre>
          private void showAd() {
             if (mInterstitialAd != null && mInterstitialAd.isAdReady()) {
@@ -148,7 +149,7 @@
         </pre>
 
 ### 5. 释放资源
-        1.在退出场景或者关闭activity的时候，需在onDestroy内调用下面的接口释放资源
+1.在退出场景或者关闭activity的时候，需在onDestroy内调用下面的接口释放资源
         <pre>
             private void destroyInterstitial() {
                 if (mInterstitialAd != null) {

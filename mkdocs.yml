@@ -27,8 +27,14 @@ theme:
 
 # markdown 扩展插件（推荐开启）
 markdown_extensions:
+  # 代码高亮插件
   - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
+      anchor_linenums: true # 支持代码行号锚点
+      line_spans: __span
+      pygments_lang_class: true
+  # 更好的代码块支持（支持嵌套等）
   - pymdownx.superfences
+  # 行内代码高亮
+  - pymdownx.inlinehilite
+  # 代码片段支持
+  - pymdownx.snippets
