@@ -1,0 +1,34 @@
+site_name: AdFlowSdk接入文档
+site_url: https://adflowsdk.adflowmobi.top/
+repo_url: https://github.com/adflowsdk/AdFlowJarSdkDoc
+
+# 核心主题配置
+theme:
+  name: material
+  language: zh # 设置为中文
+  palette: 
+    # 切换亮色/暗色模式的按钮
+    - scheme: default
+      primary: indigo 
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs # 启用顶部导航栏模式
+    - search.highlight # 搜索关键词高亮
+    - navigation.top   # 返回顶部按钮
+
+# markdown 扩展插件（推荐开启）
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
