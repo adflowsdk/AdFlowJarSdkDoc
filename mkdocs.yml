@@ -25,6 +25,8 @@ theme:
     - search.highlight # 搜索关键词高亮
     - navigation.top   # 返回顶部按钮
     - content.code.copy
+  extra_css:
+    - stylesheets/extra.css
 
 # markdown 扩展插件（推荐开启）
 markdown_extensions:
