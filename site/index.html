@@ -693,145 +693,126 @@
 <p>1.将jar包复制到app下的libs目录下。注意如果有旧版本的话请先删除。</p>
 <h3 id="2">2、添加依赖</h3>
 <p>1.在app包下的build.gradle的dependencies里添加以下代码：
-'''java
-    <pre>
-        dependencies {
-            implementation fileTree(dir: "libs", include: ["<em>.jar", "</em>.aar"])
-        }
-    </pre></p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">        </span><span class="n">implementation</span><span class="w"> </span><span class="nf">fileTree</span><span class="p">(</span><span class="n">dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;libs&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">include</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="s">&quot;*.jar&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;*.aar&quot;</span><span class="o">]</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <h3 id="3">3、权限说明</h3>
 <p>1.在app包的AndroidManifest.xml添加以下基本网络权限
-    <pre>
-        <!--添加网络权限-->
-        <uses-permission android:name="android.permission.INTERNET" />
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    </pre></p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="o">&lt;!--</span><span class="n">添加网络权限</span><span class="o">--&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span><span class="w"> </span><span class="n">android</span><span class="p">:</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;android.permission.INTERNET&quot;</span><span class="w"> </span><span class="o">/&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span><span class="w"> </span><span class="n">android</span><span class="p">:</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</span><span class="o">/&gt;</span>
+</span></code></pre></div></p>
 <p>2.设置允许使用http
     在AndroidManifest.xml的application节点内添加以下代码:
-    <pre>
-        android:usesCleartextTraffic="true"
-    </pre></p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="n">android</span><span class="p">:</span><span class="n">usesCleartextTraffic</span><span class="o">=</span><span class="s">&quot;true&quot;</span>
+</span></code></pre></div></p>
 <h3 id="4">4、混淆</h3>
 <p>1.添加以下规则到项目的混淆文件proguard-rules.pro内：
-    <pre>
-        -keep class com.adflow.adflowads.AdFlowInitialize { *;}</p>
-<div class="language-text highlight"><pre><span></span><code>    -keep class com.adflow.adflowads.unit.AdFlowInterstitial { *;}
-&lt;/pre&gt;
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">-</span><span class="n">keep</span><span class="w"> </span><span class="kd">class</span> <span class="nc">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">AdFlowInitialize</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">*</span><span class="p">;}</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="o">-</span><span class="n">keep</span><span class="w"> </span><span class="kd">class</span> <span class="nc">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">unit</span><span class="p">.</span><span class="na">AdFlowInterstitial</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">*</span><span class="p">;}</span>
+</span></code></pre></div></p>
 <h2 id="_2">二、代码配置</h2>
 <h3 id="1sdk">1、sdk初始化</h3>
-<p>1.如果app内没有application类的话，则需要新建一个类继承自Application. 假设类名为 MainApplication, 即：</p>
-<div class="language-text highlight"><pre><span></span><code>    &lt;pre&gt;public class MainApplication extends Application {}&lt;/pre&gt;
-</code></pre></div>
-<p>2.在MainApplication的onCreate接口内添加以下初始化代码</p>
-<div class="language-text highlight"><pre><span></span><code>    &lt;pre&gt;
-        AdFlowInitialize.initialize(this, app_id,
-            channel_id, new AdFlowInitializeListener() {
-                @Override
-                public void onInitialzeSuccess() {
-                }
-
-                @Override
-                public void onInitialzeFail(String message) {
-                }
-            });
-    &lt;/pre&gt;
-</code></pre></div>
+<p>1.如果app内没有application类的话，则需要新建一个类继承自Application. 假设类名为 MainApplication, 即：
+<div class="language-java highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainApplication</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Application</span><span class="w"> </span><span class="p">{}</span>
+</span></code></pre></div></p>
+<p>2.在MainApplication的onCreate接口内添加以下初始化代码
+<div class="language-java highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">AdFlowInitialize</span><span class="p">.</span><span class="na">initialize</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">app_id</span><span class="p">,</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">channel_id</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AdFlowInitializeListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onInitialzeSuccess</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onInitialzeFail</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="p">});</span>
+</span></code></pre></div></p>
 <ol>
-<li>
-<p>MainApplication文件头部需要引入接口文件：</p>
-<div class="language-text highlight"><pre><span></span><code>    &lt;code&gt;
-        import com.adflow.adflowads.AdFlowInitialize;
-        import com.adflow.adflowads.listener.AdFlowInitializeListener;
-    &lt;/code&gt;
-</code></pre></div>
-</li>
-<li>
-<p>如果处于测试阶段，需要比较详细的日志信息，可以打开日志开关，发布时请删除</p>
-<div class="language-text highlight"><pre><span></span><code>    &lt;pre&gt;
-        AdFlowInitialize.openDebugLog(true);
-    &lt;/pre&gt;
-
-    &#39;&#39;&#39;Note: 发布前请删除该接口&#39;&#39;&#39;
-</code></pre></div>
-</li>
+<li>MainApplication文件头部需要引入接口文件：
+<div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.AdFlowInitialize</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.listener.AdFlowInitializeListener</span><span class="p">;</span>
+</span></code></pre></div></li>
+<li>如果处于测试阶段，需要比较详细的日志信息，可以打开日志开关，发布时请删除
+<div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">AdFlowInitialize</span><span class="p">.</span><span class="na">openDebugLog</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span></code></pre></div>
+Note: 发布前请删除该接口</li>
 </ol>
 <h3 id="2_1">2. 初始化广告</h3>
 <p>1.在接入的类的头部添加以下引用：
-            <pre>
-                import com.adflow.adflowads.AdFlowAdError;
-                import com.adflow.adflowads.listener.AdFlowInterstitialAdListener;
-                import com.adflow.adflowads.unit.AdFlowInterstitial;
-            </pre>
-2.新建一个类成员变量：AdFlowInterstitial mInterstitialAd;
+<div class="language-java highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.AdFlowAdError</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.listener.AdFlowInterstitialAdListener</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.unit.AdFlowInterstitial</span><span class="p">;</span>
+</span></code></pre></div>
+2.新建一个类成员变量：
+<div class="language-java highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">AdFlowInterstitial</span><span class="w"> </span><span class="n">mInterstitialAd</span><span class="p">;</span>
+</span></code></pre></div>
 3.初始化成员变量，在load广告之前调用接口initInterstitial完成初始化
-            <pre>
-                private void initInterstitial(){
-                    mInterstitialAd = new AdFlowInterstitial(this);
-                    mInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
-                        @Override
-                        public void onInterstitialAdLoaded() {
-                        }</p>
-<div class="language-text highlight"><pre><span></span><code>                    @Override
-                    public void onInterstitialAdLoadFail(AdFlowAdError var1) {
-                    }
-
-                    @Override
-                    public void onInterstitialAdClicked() {
-                    }
-
-                    @Override
-                    public void onInterstitialAdShowedSuccess() {
-                    }
-
-                    @Override
-                    public void onInterstitialAdShowFail(AdFlowAdError var1) {
-                    }
-
-                    @Override
-                    public void onInterstitialAdClose() {
-                    }
-                });
-            }
-        &lt;/pre&gt;
-</code></pre></div>
-<p>此回调接口可判断广告的多个状态，加载成功/失败，展示成功/失败，关闭广告</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initInterstitial</span><span class="p">(){</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">mInterstitialAd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AdFlowInterstitial</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">mInterstitialAd</span><span class="p">.</span><span class="na">setAdListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">AdFlowInterstitialAdListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onInterstitialAdLoaded</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onInterstitialAdLoadFail</span><span class="p">(</span><span class="n">AdFlowAdError</span><span class="w"> </span><span class="n">var1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onInterstitialAdClicked</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onInterstitialAdShowedSuccess</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onInterstitialAdShowFail</span><span class="p">(</span><span class="n">AdFlowAdError</span><span class="w"> </span><span class="n">var1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onInterstitialAdClose</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="p">}</span>
+</span></code></pre></div>
+此回调接口可判断广告的多个状态，加载成功/失败，展示成功/失败，关闭广告</p>
 <h3 id="3_1">3. 预加载广告</h3>
 <p>1.添加以下代码进行广告预加载
-            <pre>
-                private void loadAd() {
-                    if (mInterstitialAd == null) {
-                        return;
-                    }
-                    //如果要添加子渠道信息需要添加以下4行代码,否则可不加
-                    Map<String, Object> localMap = new HashMap&lt;&gt;();
-                    localMap.put("channel", "1008");;
-                    localMap.put("sub_channel", "3006");
-                    mInterstitialAd.setLocalExtra(localMap);
-                    //这行代码必须保留
-                    mInterstitialAd.loadAd();
-                }
-            </pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">loadAd</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mInterstitialAd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="c1">//如果要添加子渠道信息需要添加以下4行代码,否则可不加</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">localMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="n">localMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;channel&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1008&quot;</span><span class="p">);;</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="n">localMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;sub_channel&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;3006&quot;</span><span class="p">);</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="n">mInterstitialAd</span><span class="p">.</span><span class="na">setLocalExtra</span><span class="p">(</span><span class="n">localMap</span><span class="p">);</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="c1">//这行代码必须保留</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span><span class="n">mInterstitialAd</span><span class="p">.</span><span class="na">loadAd</span><span class="p">();</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="p">}</span>
+</span></code></pre></div>
 2.如果预加载广告成功，则会进入上一步的回调接口onInterstitialAdLoaded内</p>
 <h3 id="4_1">4. 显示广告</h3>
 <p>1.调用接口show展示广告
-        <pre>
-         private void showAd() {
-            if (mInterstitialAd != null &amp;&amp; mInterstitialAd.isAdReady()) {
-                mInterstitialAd.showAd(this);//this必须为activity
-            }
-        }
-        </pre></p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">showAd</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mInterstitialAd</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">mInterstitialAd</span><span class="p">.</span><span class="na">isAdReady</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">        </span><span class="n">mInterstitialAd</span><span class="p">.</span><span class="na">showAd</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="c1">//this必须为activity</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <h3 id="5">5. 释放资源</h3>
 <p>1.在退出场景或者关闭activity的时候，需在onDestroy内调用下面的接口释放资源
-        <pre>
-            private void destroyInterstitial() {
-                if (mInterstitialAd != null) {
-                    mInterstitialAd.destory();
-                }
-                mInterstitialAd = null;
-            }
-        </pre></p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destroyInterstitial</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mInterstitialAd</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">        </span><span class="n">mInterstitialAd</span><span class="p">.</span><span class="na">destory</span><span class="p">();</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="n">mInterstitialAd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <h2 id="_3">三、错误码说明</h2>
 <div class="language-text highlight"><pre><span></span><code>    | 错误码    | 说明               
     | 4001      | 请检查手机网络       

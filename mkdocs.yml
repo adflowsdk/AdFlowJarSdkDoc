@@ -24,6 +24,7 @@ theme:
     - navigation.tabs # 启用顶部导航栏模式
     - search.highlight # 搜索关键词高亮
     - navigation.top   # 返回顶部按钮
+    - content.code.copy
 
 # markdown 扩展插件（推荐开启）
 markdown_extensions:
