@@ -690,47 +690,41 @@
 请按以下说明接入。</p>
 <h2 id="_1">一、项目配置</h2>
 <h3 id="1jar">1、添加jar到项目</h3>
-<div class="highlight"><pre><span></span><code>1.将jar包复制到app下的libs目录下。注意如果有旧版本的话请先删除。
-</code></pre></div>
+<p>1.将jar包复制到app下的libs目录下。注意如果有旧版本的话请先删除。</p>
 <h3 id="2">2、添加依赖</h3>
-<div class="highlight"><pre><span></span><code>1.在app包下的build.gradle的dependencies里添加以下代码：
-&lt;code&gt;
-dependencies {
-    implementation fileTree(dir: &quot;libs&quot;, include: [&quot;*.jar&quot;, &quot;*.aar&quot;])
-}
-&lt;/code&gt;
-</code></pre></div>
+<p>1.在app包下的build.gradle的dependencies里添加以下代码：
+'''java
+    <pre>
+        dependencies {
+            implementation fileTree(dir: "libs", include: ["<em>.jar", "</em>.aar"])
+        }
+    </pre></p>
 <h3 id="3">3、权限说明</h3>
-<div class="highlight"><pre><span></span><code>1.在app包的AndroidManifest.xml添加以下基本网络权限
-&lt;pre&gt;
-    &lt;!--添加网络权限--&gt;
-    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;
-&lt;/pre&gt;
-
-2.设置允许使用http
-在AndroidManifest.xml的application节点内添加以下代码:
-&lt;pre&gt;
-    android:usesCleartextTraffic=&quot;true&quot;
-&lt;/pre&gt;
-</code></pre></div>
+<p>1.在app包的AndroidManifest.xml添加以下基本网络权限
+    <pre>
+        <!--添加网络权限-->
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    </pre></p>
+<p>2.设置允许使用http
+    在AndroidManifest.xml的application节点内添加以下代码:
+    <pre>
+        android:usesCleartextTraffic="true"
+    </pre></p>
 <h3 id="4">4、混淆</h3>
-<div class="highlight"><pre><span></span><code>1.添加以下规则到项目的混淆文件proguard-rules.pro内：
-&lt;pre&gt;
-    -keep class com.adflow.adflowads.AdFlowInitialize { *;}
-
-    -keep class com.adflow.adflowads.unit.AdFlowInterstitial { *;}
+<p>1.添加以下规则到项目的混淆文件proguard-rules.pro内：
+    <pre>
+        -keep class com.adflow.adflowads.AdFlowInitialize { *;}</p>
+<div class="language-text highlight"><pre><span></span><code>    -keep class com.adflow.adflowads.unit.AdFlowInterstitial { *;}
 &lt;/pre&gt;
 </code></pre></div>
 <h2 id="_2">二、代码配置</h2>
 <h3 id="1sdk">1、sdk初始化</h3>
-<div class="highlight"><pre><span></span><code>    1.如果app内没有application类的话，则需要新建一个类继承自Application. 假设类名为 MainApplication, 即：
-
-    &lt;pre&gt;public class MainApplication extends Application {}&lt;/pre&gt;
-
-    2.在MainApplication的onCreate接口内添加以下初始化代码
-
-    &lt;pre&gt;
+<p>1.如果app内没有application类的话，则需要新建一个类继承自Application. 假设类名为 MainApplication, 即：</p>
+<div class="language-text highlight"><pre><span></span><code>    &lt;pre&gt;public class MainApplication extends Application {}&lt;/pre&gt;
+</code></pre></div>
+<p>2.在MainApplication的onCreate接口内添加以下初始化代码</p>
+<div class="language-text highlight"><pre><span></span><code>    &lt;pre&gt;
         AdFlowInitialize.initialize(this, app_id,
             channel_id, new AdFlowInitializeListener() {
                 @Override
@@ -742,40 +736,43 @@ dependencies {
                 }
             });
     &lt;/pre&gt;
-
-    3. MainApplication文件头部需要引入接口文件：
-
-        &lt;code&gt;
-            import com.adflow.adflowads.AdFlowInitialize;
-            import com.adflow.adflowads.listener.AdFlowInitializeListener;
-        &lt;/code&gt;
-
-    4. 如果处于测试阶段，需要比较详细的日志信息，可以打开日志开关，发布时请删除
-
-        &lt;pre&gt;
-            AdFlowInitialize.openDebugLog(true);
-        &lt;/pre&gt;
-
-        &#39;&#39;&#39;Note: 发布前请删除该接口&#39;&#39;&#39;
 </code></pre></div>
-<h3 id="2_1">2. 初始化广告</h3>
-<div class="highlight"><pre><span></span><code>    1.在接入的类的头部添加以下引用：
-        &lt;pre&gt;
-            import com.adflow.adflowads.AdFlowAdError;
-            import com.adflow.adflowads.listener.AdFlowInterstitialAdListener;
-            import com.adflow.adflowads.unit.AdFlowInterstitial;
-        &lt;/pre&gt;
-    2.新建一个类成员变量：AdFlowInterstitial mInterstitialAd;
-    3.初始化成员变量，在load广告之前调用接口initInterstitial完成初始化
-        &lt;pre&gt;
-            private void initInterstitial(){
-                mInterstitialAd = new AdFlowInterstitial(this);
-                mInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
-                    @Override
-                    public void onInterstitialAdLoaded() {
-                    }
+<ol>
+<li>
+<p>MainApplication文件头部需要引入接口文件：</p>
+<div class="language-text highlight"><pre><span></span><code>    &lt;code&gt;
+        import com.adflow.adflowads.AdFlowInitialize;
+        import com.adflow.adflowads.listener.AdFlowInitializeListener;
+    &lt;/code&gt;
+</code></pre></div>
+</li>
+<li>
+<p>如果处于测试阶段，需要比较详细的日志信息，可以打开日志开关，发布时请删除</p>
+<div class="language-text highlight"><pre><span></span><code>    &lt;pre&gt;
+        AdFlowInitialize.openDebugLog(true);
+    &lt;/pre&gt;
 
-                    @Override
+    &#39;&#39;&#39;Note: 发布前请删除该接口&#39;&#39;&#39;
+</code></pre></div>
+</li>
+</ol>
+<h3 id="2_1">2. 初始化广告</h3>
+<p>1.在接入的类的头部添加以下引用：
+            <pre>
+                import com.adflow.adflowads.AdFlowAdError;
+                import com.adflow.adflowads.listener.AdFlowInterstitialAdListener;
+                import com.adflow.adflowads.unit.AdFlowInterstitial;
+            </pre>
+2.新建一个类成员变量：AdFlowInterstitial mInterstitialAd;
+3.初始化成员变量，在load广告之前调用接口initInterstitial完成初始化
+            <pre>
+                private void initInterstitial(){
+                    mInterstitialAd = new AdFlowInterstitial(this);
+                    mInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
+                        @Override
+                        public void onInterstitialAdLoaded() {
+                        }</p>
+<div class="language-text highlight"><pre><span></span><code>                    @Override
                     public void onInterstitialAdLoadFail(AdFlowAdError var1) {
                     }
 
@@ -797,49 +794,46 @@ dependencies {
                 });
             }
         &lt;/pre&gt;
-        此回调接口可判断广告的多个状态，加载成功/失败，展示成功/失败，关闭广告
 </code></pre></div>
+<p>此回调接口可判断广告的多个状态，加载成功/失败，展示成功/失败，关闭广告</p>
 <h3 id="3_1">3. 预加载广告</h3>
-<div class="highlight"><pre><span></span><code>    1.添加以下代码进行广告预加载
-        &lt;pre&gt;
-            private void loadAd() {
-                if (mInterstitialAd == null) {
-                    return;
+<p>1.添加以下代码进行广告预加载
+            <pre>
+                private void loadAd() {
+                    if (mInterstitialAd == null) {
+                        return;
+                    }
+                    //如果要添加子渠道信息需要添加以下4行代码,否则可不加
+                    Map<String, Object> localMap = new HashMap&lt;&gt;();
+                    localMap.put("channel", "1008");;
+                    localMap.put("sub_channel", "3006");
+                    mInterstitialAd.setLocalExtra(localMap);
+                    //这行代码必须保留
+                    mInterstitialAd.loadAd();
                 }
-                //如果要添加子渠道信息需要添加以下4行代码,否则可不加
-                Map&lt;String, Object&gt; localMap = new HashMap&lt;&gt;();
-                localMap.put(&quot;channel&quot;, &quot;1008&quot;);;
-                localMap.put(&quot;sub_channel&quot;, &quot;3006&quot;);
-                mInterstitialAd.setLocalExtra(localMap);
-                //这行代码必须保留
-                mInterstitialAd.loadAd();
-            }
-        &lt;/pre&gt;
-    2.如果预加载广告成功，则会进入上一步的回调接口onInterstitialAdLoaded内
-</code></pre></div>
+            </pre>
+2.如果预加载广告成功，则会进入上一步的回调接口onInterstitialAdLoaded内</p>
 <h3 id="4_1">4. 显示广告</h3>
-<div class="highlight"><pre><span></span><code>    1.调用接口show展示广告
-    &lt;pre&gt;
-     private void showAd() {
-        if (mInterstitialAd != null &amp;&amp; mInterstitialAd.isAdReady()) {
-            mInterstitialAd.showAd(this);//this必须为activity
-        }
-    }
-    &lt;/pre&gt;
-</code></pre></div>
-<h3 id="5">5. 释放资源</h3>
-<div class="highlight"><pre><span></span><code>    1.在退出场景或者关闭activity的时候，需在onDestroy内调用下面的接口释放资源
-    &lt;pre&gt;
-        private void destroyInterstitial() {
-            if (mInterstitialAd != null) {
-                mInterstitialAd.destory();
+<p>1.调用接口show展示广告
+        <pre>
+         private void showAd() {
+            if (mInterstitialAd != null &amp;&amp; mInterstitialAd.isAdReady()) {
+                mInterstitialAd.showAd(this);//this必须为activity
             }
-            mInterstitialAd = null;
         }
-    &lt;/pre&gt;
-</code></pre></div>
+        </pre></p>
+<h3 id="5">5. 释放资源</h3>
+<p>1.在退出场景或者关闭activity的时候，需在onDestroy内调用下面的接口释放资源
+        <pre>
+            private void destroyInterstitial() {
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.destory();
+                }
+                mInterstitialAd = null;
+            }
+        </pre></p>
 <h2 id="_3">三、错误码说明</h2>
-<div class="highlight"><pre><span></span><code>    | 错误码    | 说明               
+<div class="language-text highlight"><pre><span></span><code>    | 错误码    | 说明               
     | 4001      | 请检查手机网络       
     | 4002      | 不允许调试，直接run   
     | 4003      | 任务获取后超时未显示 
