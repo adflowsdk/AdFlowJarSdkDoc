@@ -36,10 +36,9 @@
 
 1.添加以下规则到项目的混淆文件proguard-rules.pro内：
 ```java
--keep class com.adflow.adflowads.AdFlowInitialize { *;}
-
--keep class com.adflow.adflowads.unit.AdFlowInterstitial { *;}
-
+-keep public class com.adflow.adflowads.client.** {
+    public *;
+}
 ```
 
 ## 二、代码配置
@@ -67,8 +66,8 @@ AdFlowInitialize.initialize(this, app_id,
 
 3. MainApplication文件头部需要引入接口文件：
 ```java
-import com.adflow.adflowads.AdFlowInitialize;
-import com.adflow.adflowads.listener.AdFlowInitializeListener;
+import com.adflow.adflowads.client.AdFlowInitialize;
+import com.adflow.adflowads.client.AdFlowInitializeListener;
            
 ```
 4. 如果处于测试阶段，需要比较详细的日志信息，可以打开日志开关，发布时请删除
@@ -80,9 +79,9 @@ Note: 发布前请删除该接口
 ### 2. 初始化广告
 1.在接入的类的头部添加以下引用：
 ```java
-import com.adflow.adflowads.AdFlowAdError;
-import com.adflow.adflowads.listener.AdFlowInterstitialAdListener;
-import com.adflow.adflowads.unit.AdFlowInterstitial;
+import com.adflow.adflowads.client.AdFlowAdError;
+import com.adflow.adflowads.client.AdFlowInterstitialAdListener;
+import com.adflow.adflowads.client.AdFlowInterstitial;
 ```
 2.新建一个类成员变量：
 ```java
