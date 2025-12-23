@@ -39,6 +39,13 @@
 -keep public class com.adflow.adflowads.client.** {
     public *;
 }
+-keepattributes *Annotation*
+-keepattributes Signature
+-keepattributes Exceptions
+
+# 2. 保留自定义注解类
+-keep class com.adflow.adflowads.common.AdFlowNonNull
+-keep class com.adflow.adflowads.common.AdFlowNullable
 ```
 
 ## 二、代码配置
@@ -90,7 +97,7 @@ AdFlowInterstitial mAdFlowInterstitialAd;
 3.初始化成员变量，在load广告之前调用接口initInterstitial完成初始化
 ```java
 private void initInterstitial(){
-    mAdFlowInterstitialAd = new AdFlowInterstitial(this);
+    mAdFlowInterstitialAd = new AdFlowInterstitial(this);//this有activity优先传activity，没有则传context
     mAdFlowInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
         @Override
         public void onInterstitialAdLoaded() {
@@ -115,6 +122,13 @@ private void initInterstitial(){
         @Override
         public void onInterstitialAdClose() {
         }
+		@Override
+		public void onInterstitialAdRealShowedSuccess() {
+		}
+
+		@Override
+		public void onInterstitialAdRealShowFail(AdFlowAdError var1) {
+		}
     });
 }
 ```

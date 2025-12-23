@@ -711,9 +711,9 @@
 </span></code></pre></div></p>
 <h3 id="4">4、混淆</h3>
 <p>1.添加以下规则到项目的混淆文件proguard-rules.pro内：
-<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">-</span><span class="n">keep</span><span class="w"> </span><span class="kd">class</span> <span class="nc">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">AdFlowInitialize</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">*</span><span class="p">;}</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="o">-</span><span class="n">keep</span><span class="w"> </span><span class="kd">class</span> <span class="nc">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">unit</span><span class="p">.</span><span class="na">AdFlowInterstitial</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">*</span><span class="p">;}</span>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">-</span><span class="n">keep</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">client</span><span class="p">.</span><span class="o">**</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">}</span>
 </span></code></pre></div></p>
 <h2 id="_2">二、代码配置</h2>
 <h3 id="1sdk">1、sdk初始化</h3>
@@ -735,8 +735,8 @@
     app_id和channel_id需要联系对接人员给出。</p>
 <ol>
 <li>MainApplication文件头部需要引入接口文件：
-<div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.AdFlowInitialize</span><span class="p">;</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.listener.AdFlowInitializeListener</span><span class="p">;</span>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.client.AdFlowInitialize</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.client.AdFlowInitializeListener</span><span class="p">;</span>
 </span></code></pre></div></li>
 <li>如果处于测试阶段，需要比较详细的日志信息，可以打开日志开关，发布时请删除
 <div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">AdFlowInitialize</span><span class="p">.</span><span class="na">openDebugLog</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
@@ -745,9 +745,9 @@ Note: 发布前请删除该接口</li>
 </ol>
 <h3 id="2_1">2. 初始化广告</h3>
 <p>1.在接入的类的头部添加以下引用：
-<div class="language-java highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.AdFlowAdError</span><span class="p">;</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.listener.AdFlowInterstitialAdListener</span><span class="p">;</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.unit.AdFlowInterstitial</span><span class="p">;</span>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.client.AdFlowAdError</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.client.AdFlowInterstitialAdListener</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.client.AdFlowInterstitial</span><span class="p">;</span>
 </span></code></pre></div>
 2.新建一个类成员变量：
 <div class="language-java highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">AdFlowInterstitial</span><span class="w"> </span><span class="n">mAdFlowInterstitialAd</span><span class="p">;</span>
