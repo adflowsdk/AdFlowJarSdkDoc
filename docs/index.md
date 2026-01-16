@@ -77,9 +77,10 @@ import com.adflow.adflowads.client.AdFlowInitialize;
 import com.adflow.adflowads.client.AdFlowInitializeListener;
            
 ```
-4. 如果处于测试阶段，需要比较详细的日志信息，可以打开日志开关，发布时请删除
+4. 如果处于测试阶段，建议打开日志开关，将使用第三方链接测试，不影响正常任务链接。
+切记：发布时请删除或者设置为false。否则发布后将没有数据。
 ```java
-AdFlowInitialize.openDebugLog(true);
+AdFlowInitialize.openDebugLog(true);//发布时必须设置false或者删除该行代码
 ```
 Note: 发布前请删除该接口
         
