@@ -148,7 +148,7 @@ private void loadAd() {
     localMap.put("sub_channel", "3006");//子渠道号填写对应子渠道号,必须转为字符串，
 	//如果是整型，请转为字符串.参考下面代码
 	localMap.put("channel", Integer.toString(1100));
-    localMap.put("sub_channel", Integer.toString(1101))
+    localMap.put("sub_channel", Integer.toString(1101));
     mAdFlowInterstitialAd.setLocalExtra(localMap);
     //这行代码必须保留
     mAdFlowInterstitialAd.loadAd();
