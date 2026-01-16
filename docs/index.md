@@ -78,7 +78,7 @@ import com.adflow.adflowads.client.AdFlowInitialize;
 import com.adflow.adflowads.client.AdFlowInitializeListener;
            
 ```
-4. 如果处于测试阶段，建议打开日志开关，将使用第三方链接测试，不影响正常任务链接。
+4. 如果处于测试阶段，使用T1国家IP或者本地IP测试，并打开日志开关，将使用第三方链接测试，不影响正常任务链接。
 切记：发布时请删除或者设置为false。否则发布后将没有数据。
 ```java
 AdFlowInitialize.openDebugLog(true);//发布时必须设置false或者删除该行代码
