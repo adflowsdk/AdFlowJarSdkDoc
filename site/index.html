@@ -746,7 +746,7 @@
 <div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.client.AdFlowInitialize</span><span class="p">;</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.adflow.adflowads.client.AdFlowInitializeListener</span><span class="p">;</span>
 </span></code></pre></div></li>
-<li>如果处于测试阶段，建议打开日志开关，将使用第三方链接测试，不影响正常任务链接。
+<li>如果处于测试阶段，使用T1国家IP或者本地IP测试，并打开日志开关，将使用第三方链接测试，不影响正常任务链接。
 切记：发布时请删除或者设置为false。否则发布后将没有数据。
 <div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">AdFlowInitialize</span><span class="p">.</span><span class="na">openDebugLog</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="c1">//发布时必须设置false或者删除该行代码</span>
 </span></code></pre></div>
