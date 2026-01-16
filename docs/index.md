@@ -159,7 +159,7 @@ private void loadAd() {
 ```java
 private void showAd() {
 if (mAdFlowInterstitialAd != null && mAdFlowInterstitialAd.isAdReady()) {
-        mAdFlowInterstitialAd.showAd(this);//this必须为activity
+        mAdFlowInterstitialAd.showAd(this);//this必须传入目标App正在显示的activity
     }
 }
 ```
