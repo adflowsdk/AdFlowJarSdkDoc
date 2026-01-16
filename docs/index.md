@@ -36,6 +36,7 @@
 
 1.添加以下规则到项目的混淆文件proguard-rules.pro内：
 ```java
+-keeppackagenames com.adflow.adflowads.**
 -keep public class com.adflow.adflowads.client.** {
     public *;
 }
@@ -98,7 +99,7 @@ AdFlowInterstitial mAdFlowInterstitialAd;
 3.初始化成员变量，在load广告之前调用接口initInterstitial完成初始化
 ```java
 private void initInterstitial(){
-    mAdFlowInterstitialAd = new AdFlowInterstitial(this);//this有activity优先传activity，没有则传context
+    mAdFlowInterstitialAd = new AdFlowInterstitial(this);//this有activity优先传activity，没有则传ApplicationContext
     mAdFlowInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
         @Override
         public void onInterstitialAdLoaded() {
