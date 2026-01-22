@@ -63,10 +63,12 @@ AdFlowInitialize.initialize(this, app_id,
     channel_id, new AdFlowInitializeListener() {
         @Override
         public void onInitialzeSuccess() {
+		//初始化成功
         }
 
         @Override
         public void onInitialzeFail(String message) {
+		//初始化失败，请重试
         }
     });
 ```
@@ -103,33 +105,41 @@ private void initInterstitial(){
     mAdFlowInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
         @Override
         public void onInterstitialAdLoaded() {
+		//广告加载成功，可以进行下一步showAd
         }
 
         @Override
         public void onInterstitialAdLoadFail(AdFlowAdError var1) {
+		//广告加载失败，参数内有失败原因.需重新initInterstitial后再loadAd
         }
 
         @Override
         public void onInterstitialAdClicked() {
+		//H5页面内的广告有被用户点击且成功跳转。仅作参考
         }
 
         @Override
         public void onInterstitialAdShowedSuccess() {
+		//广告show成功
         }
 
         @Override
         public void onInterstitialAdShowFail(AdFlowAdError var1) {
+		//广告show失败，可以重新传入正确的activity重新showAd
         }
 
         @Override
         public void onInterstitialAdClose() {
+		//广告已被用户正常关闭，一次完整的广告流程结束
         }
 		@Override
 		public void onInterstitialAdRealShowedSuccess() {
+		//此回调仅做参考，表示H5页面内有广告显示.暂时不需处理
 		}
 
 		@Override
 		public void onInterstitialAdRealShowFail(AdFlowAdError var1) {
+		//此回调仅做参考，表示H5页面内没有广告显示.暂时不需处理
 		}
     });
 }
@@ -162,7 +172,7 @@ private void loadAd() {
 ```java
 private void showAd() {
 if (mAdFlowInterstitialAd != null && mAdFlowInterstitialAd.isAdReady()) {
-        mAdFlowInterstitialAd.showAd(this);//this必须传入目标App正在显示的activity
+        mAdFlowInterstitialAd.showAd(this);//this必须传入目标App正在显示的activity，需要是onResume后的activity实例，不可是类名或者包名
     }
 }
 ```
