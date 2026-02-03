@@ -1,6 +1,6 @@
 # AdFlowSkd接入文档
 
-当前版本：V1.0.08
+当前版本：V1.0.10
 请按以下说明接入。
 
 ## 一、项目配置
@@ -36,17 +36,14 @@
 
 1.添加以下规则到项目的混淆文件proguard-rules.pro内：
 ```java
--keeppackagenames com.adflow.adflowads.**
+-keeppackagenames com.adflow.adflowads.client.**
 -keep public class com.adflow.adflowads.client.** {
-    public *;
+    public protected <methods>;
 }
--keepattributes *Annotation*
--keepattributes Signature
--keepattributes Exceptions
-
-# 2. 保留自定义注解类
 -keep class com.adflow.adflowads.common.AdFlowNonNull
 -keep class com.adflow.adflowads.common.AdFlowNullable
+-keepattributes RuntimeVisibleAnnotations, InnerClasses, EnclosingMethod
+-dontwarn com.adflow.adflowads.**
 ```
 
 ## 二、代码配置
