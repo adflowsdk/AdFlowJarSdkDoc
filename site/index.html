@@ -688,7 +688,7 @@
 
 
 <h1 id="adflowskd">AdFlowSkd接入文档</h1>
-<p>当前版本：V1.0.08
+<p>当前版本：V1.0.10
 请按以下说明接入。</p>
 <h2 id="_1">一、项目配置</h2>
 <h3 id="1jar">1、添加jar到项目</h3>
@@ -711,17 +711,14 @@
 </span></code></pre></div></p>
 <h3 id="4">4、混淆</h3>
 <p>1.添加以下规则到项目的混淆文件proguard-rules.pro内：
-<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">-</span><span class="n">keeppackagenames</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="o">**</span>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">-</span><span class="n">keeppackagenames</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">client</span><span class="p">.</span><span class="o">**</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="o">-</span><span class="n">keep</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">client</span><span class="p">.</span><span class="o">**</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">protected</span><span class="w"> </span><span class="o">&lt;</span><span class="n">methods</span><span class="o">&gt;</span><span class="p">;</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="o">-</span><span class="n">keepattributes</span><span class="w"> </span><span class="o">*</span><span class="n">Annotation</span><span class="o">*</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="o">-</span><span class="n">keepattributes</span><span class="w"> </span><span class="n">Signature</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="o">-</span><span class="n">keepattributes</span><span class="w"> </span><span class="n">Exceptions</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="err">#</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="n">保留自定义注解类</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="o">-</span><span class="n">keep</span><span class="w"> </span><span class="kd">class</span> <span class="nc">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">common</span><span class="p">.</span><span class="na">AdFlowNonNull</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="o">-</span><span class="n">keep</span><span class="w"> </span><span class="kd">class</span> <span class="nc">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">common</span><span class="p">.</span><span class="na">AdFlowNullable</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="o">-</span><span class="n">keep</span><span class="w"> </span><span class="kd">class</span> <span class="nc">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">common</span><span class="p">.</span><span class="na">AdFlowNonNull</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="o">-</span><span class="n">keep</span><span class="w"> </span><span class="kd">class</span> <span class="nc">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="na">common</span><span class="p">.</span><span class="na">AdFlowNullable</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="o">-</span><span class="n">keepattributes</span><span class="w"> </span><span class="n">RuntimeVisibleAnnotations</span><span class="p">,</span><span class="w"> </span><span class="n">InnerClasses</span><span class="p">,</span><span class="w"> </span><span class="n">EnclosingMethod</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="o">-</span><span class="n">dontwarn</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">adflow</span><span class="p">.</span><span class="na">adflowads</span><span class="p">.</span><span class="o">**</span>
 </span></code></pre></div></p>
 <h2 id="_2">二、代码配置</h2>
 <h3 id="1sdk">1、sdk初始化</h3>

@@ -1,6 +1,6 @@
 # AdFlowSkd接入文档
 
-当前版本：V1.0.10
+当前版本：V1.0.12
 请按以下说明接入。
 
 ## 一、项目配置
@@ -158,7 +158,7 @@ private void loadAd() {
     localMap.put("sub_channel", Integer.toString(1101));
     mAdFlowInterstitialAd.setLocalExtra(localMap);
     //这行代码必须保留
-    mAdFlowInterstitialAd.loadAd();
+    mAdFlowInterstitialAd.loadAd("传入用户唯一标识字符串");
 }
 ```
 2.如果预加载广告成功，则会进入上一步的回调接口onInterstitialAdLoaded内
@@ -169,7 +169,7 @@ private void loadAd() {
 ```java
 private void showAd() {
 if (mAdFlowInterstitialAd != null && mAdFlowInterstitialAd.isAdReady()) {
-        mAdFlowInterstitialAd.showAd(this);//this必须传入目标App正在显示的activity，需要是onResume后的activity实例，不可是类名或者包名
+        mAdFlowInterstitialAd.showAd(this, "传入用户唯一标识字符串");//this必须传入目标App正在显示的activity，需要是onResume后的activity实例，不可是类名或者包名
     }
 }
 ```
