@@ -688,7 +688,7 @@
 
 
 <h1 id="adflowskd">AdFlowSkd接入文档</h1>
-<p>当前版本：V1.0.10
+<p>当前版本：V1.0.12
 请按以下说明接入。</p>
 <h2 id="_1">一、项目配置</h2>
 <h3 id="1jar">1、添加jar到项目</h3>
@@ -821,7 +821,7 @@ Note: 发布前请删除该接口</li>
 </span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span><span class="n">localMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;sub_channel&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="mi">1101</span><span class="p">));</span>
 </span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">    </span><span class="n">mAdFlowInterstitialAd</span><span class="p">.</span><span class="na">setLocalExtra</span><span class="p">(</span><span class="n">localMap</span><span class="p">);</span>
 </span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">    </span><span class="c1">//这行代码必须保留</span>
-</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">    </span><span class="n">mAdFlowInterstitialAd</span><span class="p">.</span><span class="na">loadAd</span><span class="p">();</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">    </span><span class="n">mAdFlowInterstitialAd</span><span class="p">.</span><span class="na">loadAd</span><span class="p">(</span><span class="s">&quot;传入用户唯一标识字符串&quot;</span><span class="p">);</span>
 </span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="p">}</span>
 </span></code></pre></div>
 2.如果预加载广告成功，则会进入上一步的回调接口onInterstitialAdLoaded内</p>
@@ -829,7 +829,7 @@ Note: 发布前请删除该接口</li>
 <p>1.调用接口show展示广告
 <div class="language-java highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">showAd</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mAdFlowInterstitialAd</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">mAdFlowInterstitialAd</span><span class="p">.</span><span class="na">isAdReady</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">        </span><span class="n">mAdFlowInterstitialAd</span><span class="p">.</span><span class="na">showAd</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="c1">//this必须传入目标App正在显示的activity，需要是onResume后的activity实例，不可是类名或者包名</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">        </span><span class="n">mAdFlowInterstitialAd</span><span class="p">.</span><span class="na">showAd</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;传入用户唯一标识字符串&quot;</span><span class="p">);</span><span class="c1">//this必须传入目标App正在显示的activity，需要是onResume后的activity实例，不可是类名或者包名</span>
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">}</span>
 </span></code></pre></div></p>

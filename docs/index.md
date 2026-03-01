@@ -98,7 +98,7 @@ AdFlowInterstitial mAdFlowInterstitialAd;
 3.初始化成员变量，在load广告之前调用接口initInterstitial完成初始化
 ```java
 private void initInterstitial(){
-    mAdFlowInterstitialAd = new AdFlowInterstitial(this);//this有activity优先传activity，没有则传ApplicationContext
+    mAdFlowInterstitialAd = new AdFlowInterstitial(getApplicationContext());//如果在activity里面初始化，会频繁销毁和初始化则传入this，否则传ApplicationContext
     mAdFlowInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
         @Override
         public void onInterstitialAdLoaded() {
