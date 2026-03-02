@@ -165,14 +165,26 @@ private void loadAd() {
     
  
 ### 4. 显示广告
-1.调用接口show展示广告
+1.先判断广告是否准备好
 ```java
-private void showAd() {
-if (mAdFlowInterstitialAd != null && mAdFlowInterstitialAd.isAdReady()) {
-        mAdFlowInterstitialAd.showAd(this, "传入用户唯一标识字符串");//this必须传入目标App正在显示的activity，需要是onResume后的activity实例，不可是类名或者包名
-    }
+private void checkAdReady(){
+	if(mInterstitialAd != null && mInterstitialAd.isAdReady()){
+		//Log.d("showad---", "---isadready---可以调用showad");
+	}else{
+		//Log.d("showad---", "---广告没有准备好---需要调用loadad加载广告");
+	}
 }
 ```
+2.调用接口show展示广告
+```java
+private void showAd() {
+	if (mAdFlowInterstitialAd != null && mAdFlowInterstitialAd.isAdReady()) {
+			mAdFlowInterstitialAd.showAd(this, "传入用户唯一标识字符串");//this必须传入目标App正在显示的activity，需要是onResume后的activity实例，不可是类名或者包名
+	}
+}
+```
+3.调用showAd后建议增加一个超时检测，超时2分钟或者更久还没有任何回调发生，则表示调用失败，重新走上面的第一步和第二步
+
 
 ### 5. 释放资源
 1.在退出场景或者关闭activity的时候，需在onDestroy内调用下面的接口释放资源
