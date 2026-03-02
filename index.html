@@ -842,7 +842,7 @@ Note: 发布前请删除该接口</li>
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">}</span>
 </span></code></pre></div>
-3.调用showAd后建议增加一个超时检测，超时2分钟或者更久还没有任何回调发生，则表示调用失败，重新走上面的第一步和第二步</p>
+3.调用showAd后建议增加一个超时检测，超时2分钟或者更久还没有任何回调发生，则表示调用失败，重新走整个流程，先load-&gt;isready-&gt;showad</p>
 <h3 id="5">5. 释放资源</h3>
 <p>1.在退出场景或者关闭activity的时候，需在onDestroy内调用下面的接口释放资源
 <div class="language-java highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destroyInterstitial</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
