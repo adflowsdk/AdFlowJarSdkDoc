@@ -1,7 +1,34 @@
 # AdFlowSkd接入文档
 
-当前版本：V1.0.12
+当前版本：V1.0.13
 请按以下说明接入。
+
+/***********
+## 主要变动说明：
+```java
+1.初始化广告
+//旧版:
+AdFlowInterstitial mAdFlowInterstitialAd;
+//新版本：
+volatile AdFlowInterstitial mAdFlowInterstitialAd;
+2.initInterstitial()接口：
+//旧版:
+mAdFlowInterstitialAd = new AdFlowInterstitial(getApplicationContext());
+//新版本:
+AdFlowInterstitial interstitial = AdFlowInterstitial.createInstance(getApplicationContext());
+if(interstitial == null){
+	return;
+}
+mInterstitialAd = interstitial;
+3.加载广告传入用户唯一标识
+mAdFlowInterstitialAd.loadAd("传入用户唯一标识字符串");
+4.展示广告传入用户唯一标识
+////this必须传入目标App正在显示的activity，需要是onResume后的activity实例，不可是类名或者包名
+mAdFlowInterstitialAd.showAd(this, "传入用户唯一标识字符串");
+注： loadAd和showAd传入的用户唯一标识在同一个用户手机内需相同
+5.建议在展示广告之前先判断广告是否准备好。具体的请参考页面底下说明
+```
+***********/
 
 ## 一、项目配置
 ### 1、添加jar到项目
@@ -93,13 +120,18 @@ import com.adflow.adflowads.client.AdFlowInterstitial;
 ```
 2.新建一个类成员变量：
 ```java
-AdFlowInterstitial mAdFlowInterstitialAd;
+volatile AdFlowInterstitial mAdFlowInterstitialAd;
 ```
 3.初始化成员变量，在load广告之前调用接口initInterstitial完成初始化
 ```java
 private void initInterstitial(){
-    mAdFlowInterstitialAd = new AdFlowInterstitial(getApplicationContext());//如果在activity里面初始化，会频繁销毁和初始化则传入this，否则传ApplicationContext
-    mAdFlowInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
+    //mAdFlowInterstitialAd = new AdFlowInterstitial(getApplicationContext());//如果在activity里面初始化，会频繁销毁和初始化则传入this，否则传ApplicationContext
+    AdFlowInterstitial interstitial = AdFlowInterstitial.createInstance(getApplicationContext());
+	if(interstitial == null){
+		return;
+	}
+	mInterstitialAd = interstitial;
+	mAdFlowInterstitialAd.setAdListener(new AdFlowInterstitialAdListener() {
         @Override
         public void onInterstitialAdLoaded() {
 		//广告加载成功，可以进行下一步showAd
