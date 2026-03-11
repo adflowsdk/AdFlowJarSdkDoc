@@ -5,12 +5,14 @@
 
 ## 主要变动说明：
 ```java
-1.初始化广告
+1.sdk初始化
+在Application里面调用的初始化接口AdFlowInitialize.initialize增加传入参数user_id和subChannel信息。具体的参考下面具体实现细节
+2.初始化广告
 //旧版:
 AdFlowInterstitial mAdFlowInterstitialAd;
 //新版本：
 volatile AdFlowInterstitial mAdFlowInterstitialAd;
-2.initInterstitial()接口：
+3.initInterstitial()接口：
 //旧版:
 mAdFlowInterstitialAd = new AdFlowInterstitial(getApplicationContext());
 //新版本:
@@ -19,13 +21,13 @@ if(interstitial == null){
 	return;
 }
 mInterstitialAd = interstitial;
-3.加载广告传入用户唯一标识
+4.加载广告传入用户唯一标识
 mAdFlowInterstitialAd.loadAd("传入用户唯一标识字符串");
-4.展示广告传入用户唯一标识
+5.展示广告传入用户唯一标识
 ////this必须传入目标App正在显示的activity，需要是onResume后的activity实例，不可是类名或者包名
 mAdFlowInterstitialAd.showAd(this, "传入用户唯一标识字符串");
 注： loadAd和showAd传入的用户唯一标识在同一个用户手机内需相同
-5.建议在展示广告之前先判断广告是否准备好。具体的请参考页面底下说明
+6.建议在展示广告之前先判断广告是否准备好。具体的请参考页面底下说明
 ```
 
 ## 一、项目配置
@@ -92,7 +94,13 @@ AdFlowInitialize.initialize(this, app_id,
         public void onInitialzeFail(String message) {
 		//初始化失败，请重试
         }
-    });
+    }, user_id, subChannel);
+	//user_id为用户唯一标识，需与后面的loadAd以及showAd传入的用户唯一标识一致
+	//subChannel为子渠道信息，如果没有子渠道信息，则直接传入null即可，有的话参考下面
+	Map<String, String> subChannel = new HashMap<>();
+	subChannel.put("channel", Integer.toString(1100));
+	subChannel.put("sub_channel", Integer.toString(1101))
+
 ```
 	app_id和channel_id需要联系对接人员给出。
 
