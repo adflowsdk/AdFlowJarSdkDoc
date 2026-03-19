@@ -1,6 +1,6 @@
 # AdFlowSkd接入文档
 
-当前版本：V1.0.14
+当前版本：V1.0.15
 请按以下说明接入。
 
 ## 主要变动说明：
@@ -28,6 +28,7 @@ mAdFlowInterstitialAd.loadAd("传入用户唯一标识字符串");
 mAdFlowInterstitialAd.showAd(this, "传入用户唯一标识字符串");
 注： loadAd和showAd传入的用户唯一标识在同一个用户手机内需相同
 6.建议在展示广告之前先判断广告是否准备好。具体的请参考页面底下说明
+7.AdFlowInterstitialAdListener回调里面增加onInterstitialAdLoadDelay函数，表示下次获取任务的时间间隔
 ```
 
 ## 一、项目配置
@@ -175,6 +176,10 @@ private void initInterstitial(){
 		@Override
 		public void onInterstitialAdRealShowFail(AdFlowAdError var1) {
 		//此回调仅做参考，表示H5页面内没有广告显示.暂时不需处理
+		}
+		@Override
+		public void onInterstitialAdLoadDelay(long l) {
+			//此回调表示多少分钟后才能取到任务，可以在这里调用loadAd。也可以不做用途
 		}
     });
 }
