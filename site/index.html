@@ -710,7 +710,7 @@
 
 
 <h1 id="adflowskd">AdFlowSkd接入文档</h1>
-<p>当前版本：V1.0.14
+<p>当前版本：V1.0.15
 请按以下说明接入。</p>
 <h2 id="_1">主要变动说明：</h2>
 <div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="mf">1.</span><span class="n">sdk初始化</span>
@@ -736,6 +736,7 @@
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">mAdFlowInterstitialAd</span><span class="p">.</span><span class="na">showAd</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;传入用户唯一标识字符串&quot;</span><span class="p">);</span>
 </span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">注</span><span class="err">：</span><span class="w"> </span><span class="n">loadAd和showAd传入的用户唯一标识在同一个用户手机内需相同</span>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="mf">6.</span><span class="n">建议在展示广告之前先判断广告是否准备好</span><span class="err">。</span><span class="n">具体的请参考页面底下说明</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="mf">7.</span><span class="n">AdFlowInterstitialAdListener回调里面增加onInterstitialAdLoadDelay函数</span><span class="err">，</span><span class="n">表示下次获取任务的时间间隔</span>
 </span></code></pre></div>
 <h2 id="_2">一、项目配置</h2>
 <h3 id="1jar">1、添加jar到项目</h3>
@@ -859,8 +860,12 @@ Note: 发布前请删除该接口</li>
 </span><span id="__span-11-44"><a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onInterstitialAdRealShowFail</span><span class="p">(</span><span class="n">AdFlowAdError</span><span class="w"> </span><span class="n">var1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-11-45"><a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a><span class="w">        </span><span class="c1">//此回调仅做参考，表示H5页面内没有广告显示.暂时不需处理</span>
 </span><span id="__span-11-46"><a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a><span class="w">        </span><span class="p">}</span>
-</span><span id="__span-11-47"><a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a><span class="w">    </span><span class="p">});</span>
-</span><span id="__span-11-48"><a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a><span class="p">}</span>
+</span><span id="__span-11-47"><a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-11-48"><a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onInterstitialAdLoadDelay</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-49"><a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a><span class="w">            </span><span class="c1">//此回调表示多少分钟后才能取到任务，可以在这里调用loadAd。也可以不做用途</span>
+</span><span id="__span-11-50"><a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-11-51"><a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-11-52"><a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a><span class="p">}</span>
 </span></code></pre></div>
 此回调接口可判断广告的多个状态，加载成功/失败，展示成功/失败，关闭广告</p>
 <h3 id="3_1">3. 预加载广告</h3>
